@@ -23,7 +23,7 @@ const calculateWinner = (squares) => {
 
 class Board extends React.Component {
   renderSquare(i) {
-    return <Square />;
+    return <Square number={i}/>;
   }
   render() {
     const status = 'Next player: X';
