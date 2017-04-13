@@ -1,5 +1,5 @@
 import Immutable from 'immutable'
-import type { fromJS as Immut } from 'immutable'
+// import type { fromJS as Immut } from 'immutable'
 
 import {
   CLICK_ACTION_CI,
