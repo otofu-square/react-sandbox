@@ -11,6 +11,7 @@
     "redux-actions": "^2.0.1"
   },
   "devDependencies": {
+    "flow-bin": "^0.43.1",
     "react-scripts": "0.9.5"
   },
   "scripts": {
