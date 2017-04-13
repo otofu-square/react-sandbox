@@ -1,9 +1,9 @@
 import React, { Component } from 'react';
-import './App.css';
+import '../styles/components/hello.css';
 
-const App = () =>
+const Hello = () =>
   <div>
     <h1>Hello World!!</h1>
   </div>
 
-export default App;
+export default Hello;
