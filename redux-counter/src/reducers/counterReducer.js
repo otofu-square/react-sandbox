@@ -4,7 +4,7 @@ const initialState = Immutable.fromJS({
   count: 0,
 })
 
-const counterReducer = (state = initialState, action) {
+const counterReducer = (state = initialState, action) => {
   switch (action.type) {
     case 'INCREMENT':
       return state.set(state.get('count') + 1)
