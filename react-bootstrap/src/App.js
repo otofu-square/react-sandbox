@@ -1,9 +1,9 @@
 // @flow
 
-import React from 'react';
+import React from 'react'
 
 import Header from './components/header'
-import './App.css';
+import './App.css'
 
 const App = () =>
   <div>
