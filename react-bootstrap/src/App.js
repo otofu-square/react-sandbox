@@ -1,16 +1,15 @@
-import React, { Component } from 'react';
-import logo from './logo.svg';
+// @flow
+
+import React from 'react';
+
+import Header from './components/header'
 import './App.css';
 
-class App extends Component {
-  <div className="App">
-    <div className="App-header">
-      <img src={logo} className="App-logo" alt="logo" />
-      <h2>Welcome to React</h2>
-    </div>
-    <p className="App-intro">
-      To get started, edit <code>src/App.js</code> and save to reload.
-    </p>
+const App = () =>
+  <div>
+    <Header className="a" label="This is a string" />
+    <Header className="b" label="This is b string" />
+    <Header className="c" label="This is c string" />
   </div>
 
-export default App;
+export default App
