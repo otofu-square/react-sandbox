@@ -2,14 +2,12 @@
 
 import React from 'react'
 
-import Header from './components/header'
+import DefaultButton from './components/buttons/default-button'
 import './App.css'
 
 const App = () =>
   <div>
-    <Header className="a" label="This is a string" />
-    <Header className="b" label="This is b string" />
-    <Header className="c" label="This is c string" />
+    <DefaultButton className="a" label="Hello World Button"/>
   </div>
 
 export default App
