@@ -1,9 +1,10 @@
 import React, { Component } from 'react';
-import logo from './logo.svg';
 
 import 'bootstrap/dist/css/bootstrap.css'
 import 'bootswatch/journal/bootstrap.css'
 import { Navbar, NavItem, Nav, Grid, Row, Col } from 'react-bootstrap'
+
+import Layout from './components/layout'
 
 const PLACES = [
   { name: "Palo Alto", zip: "94303" },
@@ -60,14 +61,7 @@ class App extends Component {
     const activePlace = this.state.activePlace
     return (
       <div>
-        <Navbar>
-          <Navbar.Header>
-            <Navbar.Brand>
-              React Simple Weather App
-            </Navbar.Brand>
-          </Navbar.Header>
-        </Navbar>
-        <Grid>
+        <Layout>
           <Row>
             <Col md={4} sm={4}>
               <h3>Select a city</h3>
@@ -88,7 +82,7 @@ class App extends Component {
               <WeatherDisplay key={activePlace} zip={PLACES[activePlace].zip} />
             </Col>
           </Row>
-        </Grid>
+        </Layout>
       </div>
     )
   }
