@@ -18,12 +18,20 @@ class WeatherDisplay extends Component {
 }
 
 class App extends Component {
+  constructor() {
+    super()
+    this.state = {
+      activePlace: 0,
+    }
+  }
+
   render() {
+    const activePlace = this.state.activePlace
     return (
       <div className="App">
-        <WeatherDisplay zip={"12345"}/>
+        <WeatherDisplay zip={PLACES[activePlace].zip}/>
         {PLACES.map((place, index) => (
-          <button key={index} onClick={() => console.log(`Clicked index ${index}`)}>
+          <button key={index} onClick={() => this.setState({ activePlace: index })}>
             {place.name}
           </button>
         ))}
