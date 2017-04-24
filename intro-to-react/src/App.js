@@ -44,7 +44,10 @@ class App extends Component {
     const activePlace = this.state.activePlace
     return (
       <div className="App">
-        <WeatherDisplay zip={PLACES[activePlace].zip}/>
+        <WeatherDisplay
+          zip={PLACES[activePlace].zip}
+          key={activePlace}
+        />
         {PLACES.map((place, index) => (
           <button key={index} onClick={() => this.setState({ activePlace: index })}>
             {place.name}
