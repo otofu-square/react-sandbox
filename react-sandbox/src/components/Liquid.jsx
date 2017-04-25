@@ -8,7 +8,11 @@ class Liquid extends Component {
     }
   }
 
-  stateOfMatter() {
+  setTemprature = (e) => {
+    this.setState({ currentTemp: e.target.value })
+  }
+
+  stateOfMatter = () => {
     if (this.state.currentTemp <= this.props.freezing) {
       return 'Solid'
     } else if (this.state.currentTemp >= this.props.boiling) {
@@ -23,7 +27,7 @@ class Liquid extends Component {
       <div>
         <input
           type="text"
-          onChange={(e) => this.setState({ currentTemp: e.target.value })}
+          onChange={this.setTemprature}
           value={this.state.currentTemp}
         />
         <p>{this.state.currentTemp}F, {this.props.name} is considered to be a {this.stateOfMatter()}</p>

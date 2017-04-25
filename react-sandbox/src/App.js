@@ -1,12 +1,12 @@
 import React, { Component } from 'react'
 
-import Greeting from './components/Greeting'
+import Liquid from './components/Liquid'
 
 class App extends Component {
   render() {
     return (
       <div>
-        <Greeting name="Hoge!!" />
+        <Liquid name="Ethaanol" freezing={-173.2} boiling={173.1}/>
       </div>
     )
   }
