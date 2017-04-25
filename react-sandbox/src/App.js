@@ -6,7 +6,7 @@ class App extends Component {
   render() {
     return (
       <div>
-        <Greeting name="World!!" />
+        <Greeting name="Hoge!!" />
       </div>
     )
   }

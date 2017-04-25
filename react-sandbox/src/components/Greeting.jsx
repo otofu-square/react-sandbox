@@ -6,4 +6,8 @@ class Greeting extends Component {
   }
 }
 
+Greeting.defaultProps = {
+  name: 'World!!',
+}
+
 export default Greeting
