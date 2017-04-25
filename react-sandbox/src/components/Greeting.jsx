@@ -1,13 +1,12 @@
-import React, { Component } from 'react'
+// @flow
 
-class Greeting extends Component {
-  render() {
-    return <h1>Hello, {this.props.name}</h1>
-  }
+import React from 'react'
+
+type Props = {
+  name: string,
 }
 
-Greeting.defaultProps = {
-  name: 'World!!',
-}
+const Greeting = ({ name = 'World!!' }: Props) =>
+  <h1>Hello, {name}</h1>
 
 export default Greeting
