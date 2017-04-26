@@ -1,24 +1,31 @@
 import React, { Component } from 'react'
 
-const FunctionalComponent = () =>
-  <div>
-    <h1>Hello, World</h1>
-    <h2>It is {new Date().toLocaleTimeString()}.</h2>
-  </div>
+const formatDate = (date) => date.toLocaleDateString()
 
-class ClassBasedComponent extends Component {
-  render() {
-    return <h1>Hello, {this.props.name}</h1>
-  }
-}
+const Comment = (props) =>
+  <div className="Comment">
+    <div className="UserInfo">
+      <img
+        src=""
+        alt=""
+        className="Avatar"
+      />
+      <div className="UserInfo-name">
+        {props.author.name}
+      </div>
+    </div>
+    <div className="Comment-text">
+      {props.text}
+    </div>
+    <div className="Comment-date">
+      {formatDate(props.data)}
+    </div>
+  </div>
 
 class App extends Component {
   render() {
     return (
-      <div>
-        <FunctionalComponent />
-        <ClassBasedComponent name="World !!" />
-      </div>
+      <Comment author={{ author: name }} text="This is a text" data={new Date()}/>
     )
   }
 }
