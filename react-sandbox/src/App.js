@@ -1,15 +1,12 @@
-import React, { Component } from 'react'
+import React from 'react'
 
-import Greeting from './components/Greeting'
+import Clock from './components/Clock'
 
-class App extends Component {
-  render() {
-    return (
-      <div>
-        <Greeting name="Under World!!" />
-      </div>
-    )
-  }
-}
+const App = () =>
+  <div>
+    <Clock />
+    <Clock />
+    <Clock />
+  </div>
 
 export default App
