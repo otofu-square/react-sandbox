@@ -1,12 +1,8 @@
 import React from 'react'
 
-import Clock from './components/Clock'
+import CustomTextInput from './components/CustomTextInput'
 
 const App = () =>
-  <div>
-    <Clock />
-    <Clock />
-    <Clock />
-  </div>
+  <CustomTextInput />
 
 export default App
