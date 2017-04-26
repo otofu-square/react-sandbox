@@ -6,10 +6,19 @@ const FunctionalComponent = () =>
     <h2>It is {new Date().toLocaleTimeString()}.</h2>
   </div>
 
+class ClassBasedComponent extends Component {
+  render() {
+    return <h1>Hello, {this.props.name}</h1>
+  }
+}
+
 class App extends Component {
   render() {
     return (
-      <FunctionalComponent />
+      <div>
+        <FunctionalComponent />
+        <ClassBasedComponent name="World !!" />
+      </div>
     )
   }
 }
