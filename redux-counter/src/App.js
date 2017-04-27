@@ -1,6 +1,8 @@
-import React, { Component } from 'react';
+import React from 'react'
 
-class App extends Component {
-}
+import Counter from './containers/counter'
 
-export default App;
+const App = () =>
+  <Counter />
+
+export default App
