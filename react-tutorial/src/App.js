@@ -1,8 +1,8 @@
 import React, {Component} from 'react'
 
-class App extends Component {
-  render() {
-  }
-}
+import Game from './components/Game'
+
+const App = () =>
+  <Game />
 
 export default App
