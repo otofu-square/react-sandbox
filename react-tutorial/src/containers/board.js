@@ -7,6 +7,7 @@ import { toggleSquare } from '../actions/action'
 
 const mapStateToProps = state => ({
   status: state.status,
+  isWin: state.isWin,
   squares: state.squares,
 })
 

@@ -10,9 +10,9 @@ type Props = {
   handleClick: Function,
 }
 
-const Board = ({ status, squares, handleClick }: Props) =>
+const Board = ({ status, isWin, squares, handleClick }: Props) =>
   <div>
-    <div className="status">Next player: {status}</div>
+    <div className="status">{isWin ? `Winner: ${status}` : `Next player: ${status}`}</div>
     <div className="board-row">
       <Square value={squares[0]} handleClick={() => handleClick(0)}/>
       <Square value={squares[1]} handleClick={() => handleClick(1)}/>
