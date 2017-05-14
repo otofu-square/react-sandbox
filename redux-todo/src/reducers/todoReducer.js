@@ -1,16 +1,13 @@
 // @flow
 
-import { ADD_TODO, TOGGLE_TODO, SET_VISIBILITY_FILTER } from './actions';
+import { ADD_TODO, TOGGLE_TODO } from '../actions';
 
 const initialState = {
-  visibilityFilter: 'SHOW_ALL',
   todos: [],
 };
 
 const todoReducer = (state = initialState, action) => {
   switch (action.type) {
-    case SET_VISIBILITY_FILTER:
-      return { ...state, visibilityFilter: action.filter };
     case ADD_TODO:
       return {
         ...state,
