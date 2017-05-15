@@ -1,14 +1,14 @@
+// @flow
+
 import React from 'react';
 import ReactDOM from 'react-dom';
-import { createStore, combineReducers } from 'redux';
+import { createStore } from 'redux';
 import { Provider } from 'react-redux';
 
 import App from './App';
-import todoReducer from './reducers/todoReducer';
-import visibilityFilterReducer from './reducers/visibilityFilterReducer';
+import reducer from './reducers/reducer';
 
-const reducers = combineReducers(todoReducer, visibilityFilterReducer);
-const store = createStore(reducers);
+const store = createStore(reducer);
 
 /* eslint-disable react/jsx-filename-extension */
 const Root = () => (
