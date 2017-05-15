@@ -4,20 +4,19 @@ export const ADD_TODO = 'ADD_TODO';
 export const TOGGLE_TODO = 'TOGGLE_TODO';
 export const SET_VISIBILITY_FILTER = 'SET_VISIABLE_FILTER';
 
-export const VisibilityFilters = {
-  SHOW_ALL: 'SHOW_ALL',
-  SHOW_COMPLETED: 'SHOW_COMPLETED',
-  SHOW_ACTIVE: 'SHOW_ACTIVE',
-};
+/* eslint-disable immutable/no-let */
+let nextTodoId = 0;
 
 export const addTodo = (text: string) => ({
   type: ADD_TODO,
+  /* eslint-disable no-plusplus */
+  id: nextTodoId++,
   text,
 });
 
-export const toggleTodo = (index: number) => ({
+export const toggleTodo = (id: number) => ({
   type: TOGGLE_TODO,
-  index,
+  id,
 });
 
 export const setVisibilityFilter = filter => ({
