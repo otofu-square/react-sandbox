@@ -1,0 +1,32 @@
+{
+  "name": "react-sandbox",
+  "version": "0.1.0",
+  "private": true,
+  "dependencies": {
+    "immutable": "4.0.0-rc.2",
+    "react": "^15.5.4",
+    "react-dom": "^15.5.4",
+    "react-redux": "^5.0.4",
+    "redux": "^3.6.0",
+    "redux-actions": "^2.0.3"
+  },
+  "devDependencies": {
+    "babel-eslint": "^7.2.3",
+    "eslint": "^3.19.0",
+    "eslint-config-airbnb": "^14.1.0",
+    "eslint-plugin-flowtype": "^2.32.1",
+    "eslint-plugin-immutable": "^1.0.0",
+    "eslint-plugin-import": "^2.2.0",
+    "eslint-plugin-jsx-a11y": "^3.0.2 || ^4.0.0",
+    "eslint-plugin-react": "^6.9.0",
+    "flow-bin": "^0.44.2",
+    "react-scripts": "0.9.5"
+  },
+  "scripts": {
+    "start": "react-scripts start",
+    "build": "react-scripts build",
+    "test": "react-scripts test --env=jsdom",
+    "eject": "react-scripts eject",
+    "flow": "flow"
+  }
+}
