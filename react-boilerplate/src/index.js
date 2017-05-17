@@ -1,9 +1,9 @@
-import React from 'react'
-import ReactDOM from 'react-dom'
+// @flow
 
-import App from './App'
+import React from 'react';
+import ReactDOM from 'react-dom';
 
-ReactDOM.render(
-  <App />,
-  document.getElementById('root')
-)
+import App from './App';
+
+/* eslint-disable react/jsx-filename-extension */
+ReactDOM.render(<App />, document.getElementById('root'));
