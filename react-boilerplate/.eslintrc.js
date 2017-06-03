@@ -26,6 +26,8 @@ module.exports = {
         order: ['static-methods', '/^(props|state)$/', 'lifecycle', 'everything-else', 'render'],
       },
     ],
+    'react/jsx-wrap-multilines': 0,
+    'react/jsx-filename-extension': 0,
     'react/require-default-props': 0,
     'react/no-array-index-key': 1,
     'react/prop-types': 0,
