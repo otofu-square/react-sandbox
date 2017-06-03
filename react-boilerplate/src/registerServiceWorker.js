@@ -15,8 +15,10 @@ export default function register() {
       navigator.serviceWorker
         .register(swUrl)
         .then(registration => {
+          // eslint-disable-next-line
           registration.onupdatefound = () => {
             const installingWorker = registration.installing;
+            // eslint-disable-next-line
             installingWorker.onstatechange = () => {
               if (installingWorker.state === 'installed') {
                 if (navigator.serviceWorker.controller) {
