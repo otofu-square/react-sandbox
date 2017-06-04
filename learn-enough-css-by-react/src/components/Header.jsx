@@ -10,7 +10,9 @@ const Container = styled.div`
 
 const HeaderLogo = styled.div`
   font-size: 36px;
+  color: #fff;
   float: left;
+  padding: 20px 40px;
 `;
 
 const HeaderList = styled.div`
@@ -20,6 +22,7 @@ const HeaderList = styled.div`
 const Li = styled.li`
   list-style: none;
   float: left;
+  padding: 33px 20px;
 `;
 
 const Header = () =>
