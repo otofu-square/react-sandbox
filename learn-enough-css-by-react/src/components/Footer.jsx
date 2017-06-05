@@ -20,6 +20,7 @@ const FooterList = styled.div`
 `;
 
 const Li = styled.li`
+  list-style: none;
   padding-bottom: 20px;
 `;
 

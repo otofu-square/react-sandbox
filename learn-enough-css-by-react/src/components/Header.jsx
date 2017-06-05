@@ -5,12 +5,12 @@ import styled from 'styled-components';
 
 const Container = styled.div`
   background-color: #26d0c9;
+  color: #fff;
   height: 90px;
 `;
 
 const HeaderLogo = styled.div`
   font-size: 36px;
-  color: #fff;
   float: left;
   padding: 20px 40px;
 `;
