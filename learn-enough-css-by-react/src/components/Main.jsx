@@ -39,12 +39,46 @@ const ContentsParagraph = styled.p`
   margin-top: 30px;
 `;
 
-const ContactForm = styled.div`
-`;
-
 const ContentItem = styled.div`
   float: left;
   margin-right: 40px;
+`;
+
+const ContactForm = styled.div`
+  padding-top: 100px;
+`;
+
+const ContactFormHeader3 = styled.h3`
+  border-bottom: 2px solid #dee7ec;
+  font-size: 28px;
+  padding-bottom: 15px;
+  margin-bottom: 50px;
+`;
+
+const ContactFormInput = styled.input`
+  width: 400px;
+  margin-top: 10px;
+  margin-left: 30px;
+  padding: 20px;
+  font-size: 18px;
+`;
+
+const ContactFormTextarea = styled.textarea`
+  width: 400px;
+  margin-top: 10px;
+  margin-left: 30px;
+  padding: 20px;
+  font-size: 18px;
+`;
+
+const ContactFormSubmit = styled.input`
+  width: 400px;
+  margin-top: 10px;
+  margin-left: 30px;
+  padding: 20px;
+  font-size: 18px;
+  background-color: #dee7ec;
+  color: #889eab;
 `;
 
 const Main = () =>
@@ -85,7 +119,15 @@ const Main = () =>
       </ContentItem>
     </Contents>
     <ContactForm>
-      This is contact from.
+      <ContactFormHeader3>お問い合わせ</ContactFormHeader3>
+      <p>メールアドレス（必須）</p>
+      <ContactFormInput />
+
+      <p>お問い合わせ内容（必須）</p>
+      <ContactFormTextarea />
+
+      <p>※必須項目は必ずご入力ください</p>
+      <ContactFormSubmit type="submit" value="送信" />
     </ContactForm>
   </Container>;
 
