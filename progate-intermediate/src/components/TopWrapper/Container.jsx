@@ -10,9 +10,14 @@ const StyleWrapper = styled.div`
 `;
 
 const Catchcopy = styled.h1`
+  opacity: 0.7;
+  font-size: 45px;
+  letter-spacing: 5px;
 `;
 
 const Message = styled.p`
+  opacity: 0.7;
+  font-size: 14px;
 `;
 
 const Container = () =>
