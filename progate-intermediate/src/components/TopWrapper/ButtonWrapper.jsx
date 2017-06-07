@@ -2,6 +2,7 @@
 
 import React from 'react';
 import styled from 'styled-components';
+import FontAwesome from 'react-fontawesome';
 
 const StyleWrapper = styled.div`
   margin: 20px 0;
@@ -36,12 +37,26 @@ const TwitterButton = Button.extend`
   background-color: #55acee;
 `;
 
+const FacebookIcon = styled.span`
+  margin-right: 5px;
+`;
+
+const TwitterIcon = styled.span`
+  margin-right: 5px;
+`;
+
 const ButtonWrapper = () =>
   <StyleWrapper>
     <SignupButton href="#">新規登録はこちら</SignupButton>
     <P>or sign up with</P>
-    <FacebookButton href="#">Facebookで登録</FacebookButton>
-    <TwitterButton href="#">Twitterで登録</TwitterButton>
+    <FacebookButton href="#">
+      <FacebookIcon className="fa fa-facebook" />
+      Facebookで登録
+    </FacebookButton>
+    <TwitterButton href="#">
+      <TwitterIcon className="fa fa-twitter" />
+      Twitterで登録
+    </TwitterButton>
   </StyleWrapper>;
 
 export default ButtonWrapper;
