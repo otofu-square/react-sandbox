@@ -10,6 +10,7 @@ const StyleWrapper = styled.div`
   background-image: url(https://prog-8.com/images/html/advanced/top.png);
   background-size: cover;
   color: white;
+  text-align: center;
 `;
 
 const TopWrapper = () =>

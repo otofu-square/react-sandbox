@@ -16,6 +16,11 @@ const Button = styled.a`
   color: white;
   display: inline-block;
   opacity: 0.8;
+  border-radius: 4px;
+
+  &:hover {
+    opacity: 1;
+  }
 `;
 
 const SignupButton = Button.extend`
