@@ -2,7 +2,9 @@
 
 import React from 'react';
 import styled from 'styled-components';
-import FontAwesome from 'react-fontawesome';
+
+import { SignupButton, FacebookButton, TwitterButton } from '../Button';
+import { FacebookIcon, TwitterIcon } from '../Icon';
 
 const StyleWrapper = styled.div`
   margin: 20px 0;
@@ -12,36 +14,15 @@ const P = styled.p`
   margin: 10px 0;
 `;
 
-const Button = styled.a`
-  padding: 8px 24px;
-  color: white;
-  display: inline-block;
-  opacity: 0.8;
-  border-radius: 4px;
-
-  &:hover {
-    opacity: 1;
-  }
-`;
-
-const SignupButton = Button.extend`
-  background-color: #239b76;
-`;
-
-const FacebookButton = Button.extend`
-  background-color: #3b5998;
+FacebookButton = FacebookButton.extend`
   margin-right: 10px;
 `;
 
-const TwitterButton = Button.extend`
-  background-color: #55acee;
-`;
-
-const FacebookIcon = styled.span`
+FacebookIcon = FacebookIcon.extend`
   margin-right: 5px;
 `;
 
-const TwitterIcon = styled.span`
+TwitterIcon = TwitterIcon.extend`
   margin-right: 5px;
 `;
 
