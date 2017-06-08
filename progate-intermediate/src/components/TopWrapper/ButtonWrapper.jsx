@@ -14,28 +14,28 @@ const P = styled.p`
   margin: 10px 0;
 `;
 
-FacebookButton = FacebookButton.extend`
+const StyledFacebookButton = styled(FacebookButton)`
   margin-right: 10px;
 `;
 
-FacebookIcon = FacebookIcon.extend`
-  margin-right: 5px;
+const StyledFacebookIcon = styled(FacebookIcon)`
+  margin-left: 5px;
 `;
 
-TwitterIcon = TwitterIcon.extend`
-  margin-right: 5px;
+const StyledTwitterIcon = styled(TwitterIcon)`
+  margin-left: 5px;
 `;
 
 const ButtonWrapper = () =>
   <StyleWrapper>
     <SignupButton href="#">新規登録はこちら</SignupButton>
     <P>or sign up with</P>
-    <FacebookButton href="#">
-      <FacebookIcon className="fa fa-facebook" />
+    <StyledFacebookButton href="#">
+      <StyledFacebookIcon />
       Facebookで登録
-    </FacebookButton>
+    </StyledFacebookButton>
     <TwitterButton href="#">
-      <TwitterIcon className="fa fa-twitter" />
+      <StyledTwitterIcon />
       Twitterで登録
     </TwitterButton>
   </StyleWrapper>;

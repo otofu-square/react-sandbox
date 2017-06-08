@@ -1,7 +1,6 @@
 // @flow
 
 import styled from 'styled-components';
-import FontAwesome from 'react-fontawesome';
 
 const Button = styled.a`
   padding: 8px 24px;
@@ -15,14 +14,14 @@ const Button = styled.a`
   }
 `;
 
-const SignupButton = Button.extend`
+export const SignupButton = Button.extend`
   background-color: #239b76;
 `;
 
-const FacebookButton = Button.extend`
+export const FacebookButton = Button.extend`
   background-color: #3b5998;
 `;
 
-const TwitterButton = Button.extend`
+export const TwitterButton = Button.extend`
   background-color: #55acee;
 `;
