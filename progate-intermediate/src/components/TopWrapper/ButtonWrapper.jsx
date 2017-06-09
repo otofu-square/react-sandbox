@@ -8,10 +8,14 @@ import { FacebookIcon, TwitterIcon } from '../Icon';
 
 const StyleWrapper = styled.div`
   margin: 20px 0;
-`;
 
-const P = styled.p`
-  margin: 10px 0;
+  p {
+    margin: 10px 0;
+  }
+
+  span {
+    margin-right: 5px;
+  }
 `;
 
 const StyledFacebookButton = styled(FacebookButton)`
@@ -19,17 +23,15 @@ const StyledFacebookButton = styled(FacebookButton)`
 `;
 
 const StyledFacebookIcon = styled(FacebookIcon)`
-  margin-left: 5px;
 `;
 
 const StyledTwitterIcon = styled(TwitterIcon)`
-  margin-left: 5px;
 `;
 
 const ButtonWrapper = () =>
   <StyleWrapper>
     <SignupButton href="#">新規登録はこちら</SignupButton>
-    <P>or sign up with</P>
+    <p>or sign up with</p>
     <StyledFacebookButton href="#">
       <StyledFacebookIcon />
       Facebookで登録
