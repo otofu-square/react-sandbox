@@ -16,6 +16,7 @@ const LeftWrapper = styled.div`
 const RightWrapper = styled.div`
   float: right;
   background-color: rgba(255, 255, 255, 0.3);
+  transition: all 0.5s;
 
   &:hover {
     background-color: rgba(255, 255, 255, 0.5);
@@ -28,6 +29,10 @@ const Logo = styled.img`
 `;
 
 const LoginButton = styled.a`
+  display: block;
+  line-height: 65px;
+  padding: 0 25px 0 25px;
+  color: white;
 `;
 
 const Header = () =>
