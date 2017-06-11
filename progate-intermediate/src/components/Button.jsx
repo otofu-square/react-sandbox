@@ -25,3 +25,10 @@ export const FacebookButton = Button.extend`
 export const TwitterButton = Button.extend`
   background-color: #55acee;
 `;
+
+export const DevelopButton = Button.extend`
+  padding: 15px 40px;
+  background-color: #5dca88;
+  cursor: pointer;
+  box-shadow: 0px 7px #1a7940;
+`;
