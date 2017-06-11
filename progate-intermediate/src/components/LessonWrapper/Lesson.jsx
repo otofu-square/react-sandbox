@@ -6,18 +6,39 @@ import styled from 'styled-components';
 type Props = {
   src: string,
   alt: string,
+  title: string,
+  description: string,
 };
 
 const StyleWrapper = styled.div`
 `;
 
-const Lesson = ({ src, alt }: Props) =>
+const LessonImageWrapper = styled.div`
+  position: relative;
+`;
+
+const Title = styled.p`
+  position: absolute;
+  top: 80px;
+  width: 100%;
+  color: white;
+`;
+
+const Description = styled.p`
+  width: 80%;
+  display: inline-block;
+  margin-top: 20px;
+  font-size: 12px;
+  color: #b3aeb5;
+`;
+
+const Lesson = ({ src, alt, title, description }: Props) =>
   <StyleWrapper>
-    <div>
+    <LessonImageWrapper>
       <img src={src} alt={alt} />
-      <p />
-    </div>
-    <p />
+      <Title>{title}</Title>
+    </LessonImageWrapper>
+    <Description>{description}</Description>
   </StyleWrapper>;
 
 export default Lesson;
