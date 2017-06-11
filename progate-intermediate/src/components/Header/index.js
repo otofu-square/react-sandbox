@@ -7,6 +7,9 @@ const StyleWrapper = styled.header`
   height: 65px;
   width: 100%;
   background-color: rgba(34, 49, 52, 0.9);
+  top: 0;
+  position: fixed;
+  z-index: 10;
 `;
 
 const LeftWrapper = styled.div`
