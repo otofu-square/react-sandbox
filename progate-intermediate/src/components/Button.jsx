@@ -31,4 +31,10 @@ export const DevelopButton = Button.extend`
   background-color: #5dca88;
   cursor: pointer;
   box-shadow: 0px 7px #1a7940;
+
+  &:active {
+    position: relative;
+    top: 7px;
+    box-shadow: none;
+  }
 `;
