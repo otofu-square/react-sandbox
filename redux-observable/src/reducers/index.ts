@@ -18,7 +18,7 @@ export const reducer = (state: State = initialState, action: Action): State => {
     case FETCH_REQUEST:
       return state;
     case FETCH_FAILURE:
-      return state;
+      return { ...state, ...action.payload };
     case FETCH_SUCCESS:
       return { ...state, ...action.payload };
     default:

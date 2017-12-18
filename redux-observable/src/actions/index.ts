@@ -6,21 +6,17 @@ export const FETCH_SUCCESS = 'FETCH_SUCCESS';
 
 export interface Actions {
   FETCH_REQUEST: { type: typeof FETCH_REQUEST };
-  FETCH_FAILURE: { type: typeof FETCH_FAILURE };
-  FETCH_SUCCESS: {
-    type: typeof FETCH_SUCCESS;
-    payload: State;
-  };
+  FETCH_FAILURE: { type: typeof FETCH_FAILURE; payload: State };
+  FETCH_SUCCESS: { type: typeof FETCH_SUCCESS; payload: State };
 }
 
 export type Action = Actions[keyof Actions];
 
-export const fetchRequest = (): Action => ({
-  type: FETCH_REQUEST,
-});
+export const fetchRequest = (): Action => ({ type: FETCH_REQUEST });
 
-export const fetchFailure = (): Action => ({
+export const fetchFailure = (payload: State): Action => ({
   type: FETCH_FAILURE,
+  payload,
 });
 
 export const fetchSuccess = (payload: State): Action => ({
