@@ -20,7 +20,7 @@ export const reducer = (state: State = initialState, action: Action): State => {
     case FETCH_FAILURE:
       return state;
     case FETCH_SUCCESS:
-      return { ...state, userId: action.payload.userId };
+      return { ...state, ...action.payload };
     default:
       return state;
   }
