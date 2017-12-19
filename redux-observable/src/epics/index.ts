@@ -1,16 +1,16 @@
-import { Observable, AjaxError } from 'rxjs';
-import { ajax } from 'rxjs/observable/dom/ajax';
+import { Observable } from 'rxjs';
+// import { ajax } from 'rxjs/observable/dom/ajax';
 import { Epic } from 'redux-observable';
 
 import { Action, FETCH_REQUEST, fetchSuccess, fetchFailure } from '../actions';
 import { State } from '../types';
+import { fetchPost } from '../api';
 
 export const fetchRequestEpic: Epic<Action, State> = (actions$, store) =>
   actions$.ofType(FETCH_REQUEST).mergeMap(action =>
-    ajax
-      .getJSON<State>('https://jsonplaceholder.typicode.com/posts/0')
+    fetchPost(1)
       .map(response => fetchSuccess(response))
-      .catch((error: AjaxError) =>
+      .catch(error =>
         Observable.of(
           fetchFailure({
             id: error.status,
