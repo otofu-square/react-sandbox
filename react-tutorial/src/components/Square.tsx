@@ -1,13 +1,17 @@
 import * as React from 'react';
 import styled from 'styled-components';
 
-interface Props {
-  value: number;
+import { Status } from '../types';
+
+interface ViewProps {
+  status: Status;
 }
 
-interface State {
-  value: 'X' | 'O' | null;
+interface ActionProps {
+  onClick: (...rest: {}[]) => void;
 }
+
+type Props = ViewProps & ActionProps;
 
 const StyledButton = styled.button`
   background: #fff;
@@ -32,19 +36,6 @@ const StyledButton = styled.button`
   }
 `;
 
-export class Square extends React.Component<Props, State> {
-  constructor(props: Props) {
-    super(props);
-    this.state = {
-      value: null,
-    };
-  }
-
-  render() {
-    return (
-      <StyledButton onClick={() => this.setState({ value: 'X' })}>
-        {this.state.value}
-      </StyledButton>
-    );
-  }
-}
+export const Square = ({ status, onClick }: Props) => (
+  <StyledButton onClick={onClick}>{status}</StyledButton>
+);

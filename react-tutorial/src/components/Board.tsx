@@ -2,6 +2,11 @@ import * as React from 'react';
 import styled from 'styled-components';
 
 import { Square } from './Square';
+import { Status } from '../types';
+
+interface State {
+  squares: Status[];
+}
 
 const BoardRow = styled.div`
   &:after {
@@ -11,14 +16,34 @@ const BoardRow = styled.div`
   }
 `;
 
-export class Board extends React.Component {
-  renderSquare = (i: number) => <Square value={i} />;
+const Status = styled.div`
+  margin-bottom: 10px;
+`;
+
+export class Board extends React.Component<{}, State> {
+  renderSquare(i: number) {
+    const { squares } = this.state;
+    const onClick = () => {
+      if (!squares[i]) {
+        squares[i] = 'X';
+      }
+      this.setState({ squares });
+    };
+    return <Square status={squares[i]} onClick={onClick} />;
+  }
+
+  constructor(props: {}) {
+    super(props);
+    this.state = {
+      squares: Array<Status>(9).fill(null),
+    };
+  }
 
   render() {
     const status = 'Next player: X';
     return (
       <React.Fragment>
-        <div className="status">{status}</div>
+        <Status>{status}</Status>
         <BoardRow>
           {this.renderSquare(0)}
           {this.renderSquare(1)}

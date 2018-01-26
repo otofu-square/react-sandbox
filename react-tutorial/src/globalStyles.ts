@@ -10,10 +10,6 @@ export default injectGlobal`
     padding-left: 30px;
   }
 
-  .status {
-    margin-bottom: 10px;
-  }
-
   .kbd-navigation {
     background: #ddd;
   }
