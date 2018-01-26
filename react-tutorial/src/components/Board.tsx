@@ -6,6 +6,7 @@ import { Status } from '../types';
 
 interface State {
   squares: Status[];
+  xIsNext: boolean;
 }
 
 const BoardRow = styled.div`
@@ -22,11 +23,11 @@ const Status = styled.div`
 
 export class Board extends React.Component<{}, State> {
   handleClick(i: number) {
-    const { squares } = this.state;
+    const { squares, xIsNext } = this.state;
     if (!squares[i]) {
-      squares[i] = 'X';
+      squares[i] = xIsNext ? 'X' : 'O';
     }
-    this.setState({ squares });
+    this.setState({ squares, xIsNext: !xIsNext });
   }
 
   renderSquare(i: number) {
@@ -42,11 +43,12 @@ export class Board extends React.Component<{}, State> {
     super(props);
     this.state = {
       squares: Array<Status>(9).fill(null),
+      xIsNext: true,
     };
   }
 
   render() {
-    const status = 'Next player: X';
+    const status = `Next player: ${this.state.xIsNext ? 'X' : 'O'}`;
     return (
       <React.Fragment>
         <Status>{status}</Status>
