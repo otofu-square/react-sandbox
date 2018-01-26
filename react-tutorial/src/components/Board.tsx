@@ -21,15 +21,21 @@ const Status = styled.div`
 `;
 
 export class Board extends React.Component<{}, State> {
-  renderSquare(i: number) {
+  handleClick(i: number) {
     const { squares } = this.state;
-    const onClick = () => {
-      if (!squares[i]) {
-        squares[i] = 'X';
-      }
-      this.setState({ squares });
-    };
-    return <Square status={squares[i]} onClick={onClick} />;
+    if (!squares[i]) {
+      squares[i] = 'X';
+    }
+    this.setState({ squares });
+  }
+
+  renderSquare(i: number) {
+    return (
+      <Square
+        status={this.state.squares[i]}
+        onClick={() => this.handleClick(i)}
+      />
+    );
   }
 
   constructor(props: {}) {
