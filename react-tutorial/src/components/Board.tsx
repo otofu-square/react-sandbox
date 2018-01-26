@@ -12,7 +12,7 @@ const BoardRow = styled.div`
 `;
 
 export class Board extends React.Component {
-  renderSquare = (i: number) => <Square />;
+  renderSquare = (i: number) => <Square value={i} />;
 
   render() {
     const status = 'Next player: X';

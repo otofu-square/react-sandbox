@@ -1,6 +1,14 @@
 import * as React from 'react';
 import styled from 'styled-components';
 
+interface Props {
+  value: number;
+}
+
+interface State {
+  value: 'X' | 'O' | null;
+}
+
 const StyledButton = styled.button`
   background: #fff;
   border: 1px solid #999;
@@ -24,8 +32,19 @@ const StyledButton = styled.button`
   }
 `;
 
-export class Square extends React.Component {
+export class Square extends React.Component<Props, State> {
+  constructor(props: Props) {
+    super(props);
+    this.state = {
+      value: null,
+    };
+  }
+
   render() {
-    return <StyledButton>{/* TODO */}</StyledButton>;
+    return (
+      <StyledButton onClick={() => this.setState({ value: 'X' })}>
+        {this.state.value}
+      </StyledButton>
+    );
   }
 }
