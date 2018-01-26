@@ -21,13 +21,43 @@ const Status = styled.div`
   margin-bottom: 10px;
 `;
 
+const calculateWinner = (squares: State['squares']) => {
+  const conditions = [
+    [1, 2, 3],
+    [4, 5, 6],
+    [7, 8, 9],
+    [1, 4, 7],
+    [2, 5, 8],
+    [3, 6, 9],
+    [1, 5, 9],
+    [3, 5, 7],
+  ];
+  const results = conditions.map(condition => {
+    const [f, s, t] = condition.map(i => squares[i]);
+    return f !== null && f === s && s === t;
+  });
+  return results.includes(true);
+};
+
 export class Board extends React.Component<{}, State> {
+  constructor(props: {}) {
+    super(props);
+    this.state = {
+      squares: Array<Status>(9).fill(null),
+      xIsNext: true,
+    };
+  }
+
   handleClick(i: number) {
     const { squares, xIsNext } = this.state;
-    if (!squares[i]) {
+    if (
+      !squares[i] &&
+      this.currentPlayer() !== this.nextPlayer() &&
+      !calculateWinner(this.state.squares)
+    ) {
       squares[i] = xIsNext ? 'X' : 'O';
+      this.setState({ squares, xIsNext: !xIsNext });
     }
-    this.setState({ squares, xIsNext: !xIsNext });
   }
 
   renderSquare(i: number) {
@@ -39,19 +69,22 @@ export class Board extends React.Component<{}, State> {
     );
   }
 
-  constructor(props: {}) {
-    super(props);
-    this.state = {
-      squares: Array<Status>(9).fill(null),
-      xIsNext: true,
-    };
+  nextPlayer() {
+    return this.state.xIsNext ? 'X' : 'O';
+  }
+
+  currentPlayer() {
+    return this.state.xIsNext ? 'O' : 'X';
   }
 
   render() {
-    const status = `Next player: ${this.state.xIsNext ? 'X' : 'O'}`;
     return (
       <React.Fragment>
-        <Status>{status}</Status>
+        <Status>
+          {calculateWinner(this.state.squares)
+            ? `Winner: ${this.currentPlayer()}`
+            : `Next player: ${this.nextPlayer()}`}
+        </Status>
         <BoardRow>
           {this.renderSquare(0)}
           {this.renderSquare(1)}
