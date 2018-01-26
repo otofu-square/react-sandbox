@@ -1,32 +1,23 @@
 {
-  "name": "react-sandbox",
+  "name": "react-tutorial",
   "version": "0.1.0",
   "private": true,
   "dependencies": {
-    "immutable": "4.0.0-rc.2",
-    "react": "^15.5.4",
-    "react-dom": "^15.5.4",
-    "react-redux": "^5.0.4",
-    "redux": "^3.6.0",
-    "redux-actions": "^2.0.2"
-  },
-  "devDependencies": {
-    "babel-eslint": "^7.2.3",
-    "eslint": "^3.19.0",
-    "eslint-config-airbnb": "^14.1.0",
-    "eslint-plugin-flowtype": "^2.32.1",
-    "eslint-plugin-immutable": "^1.0.0",
-    "eslint-plugin-import": "^2.2.0",
-    "eslint-plugin-jsx-a11y": "^3.0.2 || ^4.0.0",
-    "eslint-plugin-react": "^6.9.0",
-    "flow-bin": "^0.44.2",
-    "react-scripts": "0.9.5"
+    "react": "^16.2.0",
+    "react-dom": "^16.2.0",
+    "react-scripts-ts": "2.13.0"
   },
   "scripts": {
-    "start": "react-scripts start",
-    "build": "react-scripts build",
-    "test": "react-scripts test --env=jsdom",
-    "eject": "react-scripts eject",
-    "flow": "flow"
+    "start": "react-scripts-ts start",
+    "build": "react-scripts-ts build",
+    "test": "react-scripts-ts test --env=jsdom",
+    "eject": "react-scripts-ts eject"
+  },
+  "devDependencies": {
+    "@types/jest": "^22.1.0",
+    "@types/node": "^9.3.0",
+    "@types/react": "^16.0.35",
+    "@types/react-dom": "^16.0.3",
+    "typescript": "^2.6.2"
   }
 }
