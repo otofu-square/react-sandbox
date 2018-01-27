@@ -62,7 +62,9 @@ export class Board extends React.Component<{}, State> {
 
   handleClick(i: number) {
     const { history, xIsNext } = this.state;
-    const latestSquares = this.getLatestHistory();
+    const latestSquares = this.getLatestHistory().slice();
+    // tslint:disable
+    console.log(history);
     if (
       !latestSquares[i] &&
       this.currentPlayer() !== this.nextPlayer() &&
