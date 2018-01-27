@@ -5,7 +5,7 @@ import { Square } from './Square';
 import { Status } from '../types';
 
 interface State {
-  squares: Status[];
+  history: Status[][];
   xIsNext: boolean;
 }
 
@@ -21,16 +21,16 @@ const Status = styled.div`
   margin-bottom: 10px;
 `;
 
-const calculateWinner = (squares: State['squares']) => {
+const calculateWinner = (squares: Status[]) => {
   const conditions = [
-    [1, 2, 3],
-    [4, 5, 6],
-    [7, 8, 9],
+    [0, 1, 2],
+    [3, 4, 5],
+    [6, 7, 8],
+    [0, 3, 6],
     [1, 4, 7],
     [2, 5, 8],
-    [3, 6, 9],
-    [1, 5, 9],
-    [3, 5, 7],
+    [0, 4, 8],
+    [2, 4, 6],
   ];
   const results = conditions.map(condition => {
     const [f, s, t] = condition.map(i => squares[i]);
@@ -43,47 +43,56 @@ export class Board extends React.Component<{}, State> {
   constructor(props: {}) {
     super(props);
     this.state = {
-      squares: Array<Status>(9).fill(null),
+      history: [Array<Status>(9).fill(null)],
       xIsNext: true,
     };
   }
 
-  handleClick(i: number) {
-    const { squares, xIsNext } = this.state;
-    if (
-      !squares[i] &&
-      this.currentPlayer() !== this.nextPlayer() &&
-      !calculateWinner(this.state.squares)
-    ) {
-      squares[i] = xIsNext ? 'X' : 'O';
-      this.setState({ squares, xIsNext: !xIsNext });
-    }
-  }
-
-  renderSquare(i: number) {
-    return (
-      <Square
-        status={this.state.squares[i]}
-        onClick={() => this.handleClick(i)}
-      />
-    );
-  }
-
-  nextPlayer() {
-    return this.state.xIsNext ? 'X' : 'O';
+  getLatestHistory() {
+    return this.state.history[this.state.history.length - 1];
   }
 
   currentPlayer() {
     return this.state.xIsNext ? 'O' : 'X';
   }
 
+  nextPlayer() {
+    return this.state.xIsNext ? 'X' : 'O';
+  }
+
+  handleClick(i: number) {
+    const { history, xIsNext } = this.state;
+    const latestSquares = this.getLatestHistory();
+    if (
+      !latestSquares[i] &&
+      this.currentPlayer() !== this.nextPlayer() &&
+      !calculateWinner(latestSquares)
+    ) {
+      latestSquares[i] = this.currentPlayer();
+      history.push(latestSquares);
+      this.setState({
+        history,
+        xIsNext: !xIsNext,
+      });
+    }
+  }
+
+  renderSquare(i: number) {
+    return (
+      <Square
+        status={this.getLatestHistory()[i]}
+        onClick={() => this.handleClick(i)}
+      />
+    );
+  }
+
   render() {
     return (
       <React.Fragment>
         <Status>
-          {calculateWinner(this.state.squares)
-            ? `Winner: ${this.currentPlayer()}`
-            : `Next player: ${this.nextPlayer()}`}
+          {calculateWinner(this.getLatestHistory())
+            ? `Winner: ${this.nextPlayer()}`
+            : `Next player: ${this.currentPlayer()}`}
         </Status>
         <BoardRow>
           {this.renderSquare(0)}
