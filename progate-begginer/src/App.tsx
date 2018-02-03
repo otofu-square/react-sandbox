@@ -1,17 +1,13 @@
 import * as React from 'react';
-import styled from 'styled-components';
 
-const StyledHeader = styled.h1`
-  color: #ff0000;
-`;
-
-const StyledParagrah = styled.h1`
-  color: #0000ff;
-`;
+import { Footer } from './components/Footer';
+import { Header } from './components/Header';
+import { Main } from './components/Main';
 
 export const App = () => (
   <>
-    <StyledHeader>Hello World</StyledHeader>
-    <StyledParagrah>プログラミングの世界へようこそ</StyledParagrah>
+    <Header />
+    <Main />
+    <Footer />
   </>
 );
