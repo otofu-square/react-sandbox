@@ -5,7 +5,7 @@ import { Square } from './Square';
 import { Status } from '../types';
 
 interface State {
-  squares: Status[];
+  history: Status[][];
   xIsNext: boolean;
 }
 
@@ -21,37 +21,81 @@ const Status = styled.div`
   margin-bottom: 10px;
 `;
 
+const calculateWinner = (squares: Status[]) => {
+  const conditions = [
+    [0, 1, 2],
+    [3, 4, 5],
+    [6, 7, 8],
+    [0, 3, 6],
+    [1, 4, 7],
+    [2, 5, 8],
+    [0, 4, 8],
+    [2, 4, 6],
+  ];
+  const results = conditions.map(condition => {
+    const [f, s, t] = condition.map(i => squares[i]);
+    return f !== null && f === s && s === t;
+  });
+  return results.includes(true);
+};
+
 export class Board extends React.Component<{}, State> {
+  constructor(props: {}) {
+    super(props);
+    this.state = {
+      history: [Array<Status>(9).fill(null)],
+      xIsNext: true,
+    };
+  }
+
+  getLatestHistory() {
+    return this.state.history[this.state.history.length - 1];
+  }
+
+  currentPlayer() {
+    return this.state.xIsNext ? 'O' : 'X';
+  }
+
+  nextPlayer() {
+    return this.state.xIsNext ? 'X' : 'O';
+  }
+
   handleClick(i: number) {
-    const { squares, xIsNext } = this.state;
-    if (!squares[i]) {
-      squares[i] = xIsNext ? 'X' : 'O';
+    const { history, xIsNext } = this.state;
+    const latestSquares = this.getLatestHistory().slice();
+    // tslint:disable
+    console.log(history);
+    if (
+      !latestSquares[i] &&
+      this.currentPlayer() !== this.nextPlayer() &&
+      !calculateWinner(latestSquares)
+    ) {
+      latestSquares[i] = this.currentPlayer();
+      history.push(latestSquares);
+      this.setState({
+        history,
+        xIsNext: !xIsNext,
+      });
     }
-    this.setState({ squares, xIsNext: !xIsNext });
   }
 
   renderSquare(i: number) {
     return (
       <Square
-        status={this.state.squares[i]}
+        status={this.getLatestHistory()[i]}
         onClick={() => this.handleClick(i)}
       />
     );
   }
 
-  constructor(props: {}) {
-    super(props);
-    this.state = {
-      squares: Array<Status>(9).fill(null),
-      xIsNext: true,
-    };
-  }
-
   render() {
-    const status = `Next player: ${this.state.xIsNext ? 'X' : 'O'}`;
     return (
       <React.Fragment>
-        <Status>{status}</Status>
+        <Status>
+          {calculateWinner(this.getLatestHistory())
+            ? `Winner: ${this.nextPlayer()}`
+            : `Next player: ${this.currentPlayer()}`}
+        </Status>
         <BoardRow>
           {this.renderSquare(0)}
           {this.renderSquare(1)}
