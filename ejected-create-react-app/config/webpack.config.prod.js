@@ -16,8 +16,8 @@ const ModuleScopePlugin = require('react-dev-utils/ModuleScopePlugin');
 const getCSSModuleLocalIdent = require('react-dev-utils/getCSSModuleLocalIdent');
 const paths = require('./paths');
 const getClientEnvironment = require('./env');
-const getCacheIdentifier = require('react-dev-utils/getCacheIdentifier');
 const ModuleNotFoundPlugin = require('react-dev-utils/ModuleNotFoundPlugin');
+
 
 // Webpack uses `publicPath` to determine where the app is being served from.
 // It requires a trailing slash, or the file assets will get an incorrect path.
@@ -27,6 +27,9 @@ const publicPath = paths.servedPath;
 const shouldUseRelativeAssetPaths = publicPath === './';
 // Source maps are resource heavy and can cause out of memory issue for large source files.
 const shouldUseSourceMap = process.env.GENERATE_SOURCEMAP !== 'false';
+// Some apps do not need the benefits of saving a web request, so not inlining the chunk
+// makes for a smoother build process.
+const shouldInlineRuntimeChunk = process.env.INLINE_RUNTIME_CHUNK !== 'false';
 // `publicUrl` is just like `publicPath`, but we will provide it to our app
 // as %PUBLIC_URL% in `index.html` and `process.env.PUBLIC_URL` in JavaScript.
 // Omit trailing slash as %PUBLIC_URL%/xyz looks better than %PUBLIC_URL%xyz.
@@ -141,6 +144,11 @@ module.exports = {
             // Pending further investigation:
             // https://github.com/mishoo/UglifyJS2/issues/2011
             comparisons: false,
+            // Disabled because of an issue with Terser breaking valid code:
+            // https://github.com/facebook/create-react-app/issues/5250
+            // Pending futher investigation:
+            // https://github.com/terser-js/terser/issues/120
+            inline: 2,
           },
           mangle: {
             safari10: true,
@@ -163,14 +171,16 @@ module.exports = {
       new OptimizeCSSAssetsPlugin({
         cssProcessorOptions: {
           parser: safePostCssParser,
-          map: {
-            // `inline: false` forces the sourcemap to be output into a
-            // separate file
-            inline: false,
-            // `annotation: true` appends the sourceMappingURL to the end of
-            // the css file, helping the browser find the sourcemap
-            annotation: true,
-          },
+          map: shouldUseSourceMap
+            ? {
+                // `inline: false` forces the sourcemap to be output into a
+                // separate file
+                inline: false,
+                // `annotation: true` appends the sourceMappingURL to the end of
+                // the css file, helping the browser find the sourcemap
+                annotation: true,
+              }
+            : false,
         },
       }),
     ],
@@ -200,7 +210,7 @@ module.exports = {
     // https://github.com/facebook/create-react-app/issues/290
     // `web` extension prefixes have been added for better support
     // for React Native Web.
-    extensions: ['.web.js', '.js', '.json', '.web.jsx', '.jsx'],
+    extensions: ['.mjs', '.web.js', '.js', '.json', '.web.jsx', '.jsx'],
     alias: {
       // Support React Native Web
       // https://www.smashingmagazine.com/2016/08/a-glimpse-into-the-future-with-react-native-for-web/
@@ -234,7 +244,7 @@ module.exports = {
       // First, run the linter.
       // It's important to do this before Babel processes the JS.
       {
-        test: /\.(js|jsx)$/,
+        test: /\.(js|mjs|jsx)$/,
         enforce: 'pre',
         use: [
           {
@@ -247,16 +257,6 @@ module.exports = {
           },
         ],
         include: paths.appSrc,
-      },
-      {
-        // `mjs` support is still in its infancy in the ecosystem, so we don't
-        // support it.
-        // Modules who define their `browser` or `module` key as `mjs` force
-        // the use of this extension, so we need to tell webpack to fall back
-        // to auto mode (ES Module interop, allows ESM to import CommonJS).
-        test: /\.mjs$/,
-        include: /node_modules/,
-        type: 'javascript/auto',
       },
       {
         // "oneOf" will traverse all following loaders until one will
@@ -276,7 +276,7 @@ module.exports = {
           // Process application JS with Babel.
           // The preset includes JSX, Flow, and some ESnext features.
           {
-            test: /\.(js|jsx)$/,
+            test: /\.(js|mjs|jsx)$/,
             include: paths.appSrc,
 
             loader: require.resolve('babel-loader'),
@@ -306,7 +306,7 @@ module.exports = {
           // Process any JS outside of the app with Babel.
           // Unlike the application JS, we only compile the standard ES features.
           {
-            test: /\.js$/,
+            test: /\.(js|mjs)$/,
             exclude: /@babel(?:\/|\\{1,2})runtime/,
             loader: require.resolve('babel-loader'),
             options: {
@@ -404,7 +404,7 @@ module.exports = {
             // it's runtime that would otherwise be processed through "file" loader.
             // Also exclude `html` and `json` extensions so they get processed
             // by webpacks internal loaders.
-            exclude: [/\.(js|jsx)$/, /\.html$/, /\.json$/],
+            exclude: [/\.(js|mjs|jsx)$/, /\.html$/, /\.json$/],
             options: {
               name: 'static/media/[name].[hash:8].[ext]',
             },
@@ -435,7 +435,7 @@ module.exports = {
     }),
     // Inlines the webpack runtime script. This script is too small to warrant
     // a network request.
-    new InlineChunkHtmlPlugin(HtmlWebpackPlugin, [/runtime~.+[.]js/]),
+    shouldInlineRuntimeChunk && new InlineChunkHtmlPlugin(HtmlWebpackPlugin, [/runtime~.+[.]js/]),
     // Makes some environment variables available in index.html.
     // The public URL is available as %PUBLIC_URL% in index.html, e.g.:
     // <link rel="shortcut icon" href="%PUBLIC_URL%/favicon.ico">
@@ -484,7 +484,7 @@ module.exports = {
         new RegExp('/[^/]+\\.[^/]+$'),
       ],
     }),
-  ],
+  ].filter(Boolean),
   // Some libraries import Node modules but don't use them in the browser.
   // Tell Webpack to provide empty mocks for them so importing them works.
   node: {
