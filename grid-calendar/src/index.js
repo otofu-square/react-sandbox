@@ -1,0 +1,99 @@
+import "core-js/stable";
+import "regenerator-runtime/runtime";
+import "./polyfill";
+
+import React from "react";
+import { render } from "react-dom";
+import {
+  Week,
+  Event,
+  Header,
+  WeekTitle,
+  DayTitle,
+  DayCell
+} from "./components";
+
+function App() {
+  return (
+    <div className="App">
+      <Header>
+        <WeekTitle>S</WeekTitle>
+        <WeekTitle>M</WeekTitle>
+        <WeekTitle>T</WeekTitle>
+        <WeekTitle>W</WeekTitle>
+        <WeekTitle>T</WeekTitle>
+        <WeekTitle>F</WeekTitle>
+        <WeekTitle>S</WeekTitle>
+      </Header>
+      <Week>
+        <Event start={1} end={1} color="green">
+          aaa
+        </Event>
+        <Event start={2} color="orange">
+          bbb
+        </Event>
+        <Event start={4} end={3} color="skyblue">
+          ccc
+        </Event>
+        <Event start={3} end={3} color="red">
+          ddd
+        </Event>
+        <Event start={3} end={4} color="pink">
+          eee
+        </Event>
+        <DayCell>
+          <DayTitle>1</DayTitle>
+        </DayCell>
+        <DayCell>
+          <DayTitle>2</DayTitle>
+        </DayCell>
+        <DayCell>
+          <DayTitle>3</DayTitle>
+        </DayCell>
+        <DayCell>
+          <DayTitle>4</DayTitle>
+        </DayCell>
+        <DayCell>
+          <DayTitle>5</DayTitle>
+        </DayCell>
+        <DayCell>
+          <DayTitle>6</DayTitle>
+        </DayCell>
+        <DayCell>
+          <DayTitle>7</DayTitle>
+        </DayCell>
+      </Week>
+      <Week>
+        <Event start={2} end={6} color="blue">
+          fff
+        </Event>
+        <DayCell>
+          <DayTitle>8</DayTitle>
+        </DayCell>
+        <DayCell>
+          <DayTitle>9</DayTitle>
+        </DayCell>
+        <DayCell>
+          <DayTitle>10</DayTitle>
+        </DayCell>
+        <DayCell>
+          <DayTitle>11</DayTitle>
+        </DayCell>
+        <DayCell>
+          <DayTitle>12</DayTitle>
+        </DayCell>
+        <DayCell>
+          <DayTitle>13</DayTitle>
+        </DayCell>
+        <DayCell>
+          <DayTitle>14</DayTitle>
+        </DayCell>
+      </Week>
+    </div>
+  );
+}
+
+const root = document.createElement("div");
+document.body.append(root);
+
+render(<App />, root);
