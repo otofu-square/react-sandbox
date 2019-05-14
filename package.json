@@ -3,6 +3,6 @@
   "repository": "ssh://git@github.com/otofu-square/react-sandbox.git",
   "dependencies": {},
   "devDependencies": {
-    "create-react-app": "2.0.2"
+    "create-react-app": "3.0.1"
   }
 }
