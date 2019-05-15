@@ -1,6 +1,5 @@
 import "core-js/stable";
 import "regenerator-runtime/runtime";
-import "./polyfill";
 
 import styled from "@emotion/styled";
 import React from "react";
