@@ -2,21 +2,27 @@ import "core-js/stable";
 import "regenerator-runtime/runtime";
 import "./polyfill";
 
+import styled from "@emotion/styled";
 import React from "react";
 import { render } from "react-dom";
 import {
-  Week,
-  Event,
-  Header,
+  WeekHeader,
   WeekTitle,
+  WeekRow,
+  Event,
   DayTitle,
   DayCell
 } from "./components";
 
+const StyledApp = styled.div`
+  width: 100%;
+  height: 100%;
+`;
+
 function App() {
   return (
-    <div className="App">
-      <Header>
+    <StyledApp>
+      <WeekHeader>
         <WeekTitle>S</WeekTitle>
         <WeekTitle>M</WeekTitle>
         <WeekTitle>T</WeekTitle>
@@ -24,23 +30,8 @@ function App() {
         <WeekTitle>T</WeekTitle>
         <WeekTitle>F</WeekTitle>
         <WeekTitle>S</WeekTitle>
-      </Header>
-      <Week>
-        <Event start={1} end={1} color="green">
-          aaa
-        </Event>
-        <Event start={2} color="orange">
-          bbb
-        </Event>
-        <Event start={4} end={3} color="skyblue">
-          ccc
-        </Event>
-        <Event start={3} end={3} color="red">
-          ddd
-        </Event>
-        <Event start={3} end={4} color="pink">
-          eee
-        </Event>
+      </WeekHeader>
+      <WeekRow>
         <DayCell>
           <DayTitle>1</DayTitle>
         </DayCell>
@@ -62,11 +53,23 @@ function App() {
         <DayCell>
           <DayTitle>7</DayTitle>
         </DayCell>
-      </Week>
-      <Week>
-        <Event start={2} end={6} color="blue">
-          fff
+        <Event start={1} end={2} color="green">
+          aaa
         </Event>
+        <Event start={2} end={3} color="orange">
+          bbb
+        </Event>
+        <Event start={4} end={3} color="skyblue">
+          ccc
+        </Event>
+        <Event start={3} end={3} color="red">
+          ddd
+        </Event>
+        <Event start={3} end={4} color="pink">
+          eee
+        </Event>
+      </WeekRow>
+      <WeekRow>
         <DayCell>
           <DayTitle>8</DayTitle>
         </DayCell>
@@ -88,8 +91,11 @@ function App() {
         <DayCell>
           <DayTitle>14</DayTitle>
         </DayCell>
-      </Week>
-    </div>
+        <Event start={2} end={6} color="blue">
+          fff
+        </Event>
+      </WeekRow>
+    </StyledApp>
   );
 }
 

@@ -1,13 +1,11 @@
 import React from "react";
 import styled from "@emotion/styled";
 
-export const Header = styled.div`
+export const WeekHeader = styled.div`
   /* NOTE: {} でスタイルを囲まないと autoprefixer がエラーを吐くため */
   & {
     display: grid;
-    grid-template-columns: repeat(7, 1fr);
-    grid-template-rows: auto auto;
-    grid-gap: 0;
+    grid-template: 1fr / repeat(7, 1fr);
   }
 `;
 
@@ -15,28 +13,26 @@ export const WeekTitle = styled.abbr`
   color: gray;
 `;
 
-export const Week = styled.div`
+export const WeekRow = styled.div`
   /* NOTE: {} でスタイルを囲まないと autoprefixer がエラーを吐くため */
   & {
     display: grid;
-    grid-template-columns: repeat(7, 1fr);
-    grid-template-rows: auto auto;
-    grid-auto-flow: row;
+    grid-template: repeat(4, 1fr) / repeat(7, 1fr);
     grid-gap: 2px 5px;
   }
 `;
 
 export const DayTitle = styled.div`
+  grid-row-start: 1;
   color: gray;
   font-size: 0.75rem;
-  grid-row-start: 1;
   text-align: right;
   margin: 0;
 `;
 
 export const DayCell = styled.div`
-  display: contents;
-  background-color: #ddd;
+  text-align: right;
+  color: #ddd;
 `;
 
 export const Event = styled.div`
